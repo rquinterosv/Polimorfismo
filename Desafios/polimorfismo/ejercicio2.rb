@@ -1,52 +1,87 @@
-class Person
-    def initialize(first, last, age)
-      @first_name = first
-      @last_name = last
-      @age = age
+module Habilidades
+    module Volador
+        def volar
+            'Estoy volandooooo!'
+        end
+        def aterrizar
+            'Estoy cansado de volar, voy a aterrizar'
+        end
     end
 
-    def birthday
-      @age += 1
-    end
-end
-
-class Teacher < Person
-    def talk
-        puts "Bienvenidos a la clase de programación con Ruby!"
-    end
-    def introduce
-        puts "Hola alumnos. Mi nombre es #{@first_name} #{@last_name}."
-    end
-end
-
-class Parent < Person
-    def talk
-        puts "Aquí es la reunión de apoderados?"
+    module Nadador
+        def nadar
+            'Estoy nadando!'
+        end
+        def sumergir
+            'glu glub glub glu'
+        end
     end
 
-    def introduce
-        puts "Hola. Soy uno de los apoderados. Mi nombre es #{@first_name} #{@last_name}."
+    module Caminante
+        def caminar
+            'Puedo caminar!'
+        end
     end
 end
 
-class Student < Person
-    def talk
-        puts "Aquí es la clase de programación con Ruby?"
+module Alimentacion
+    module Herbivoro
+        def comer
+        'Puedo comer plantas!'
+        end
     end
 
-    def introduce
-        puts "Hola profesor. Mi nombre es #{@first_name} #{@last_name}."
+    module Carnivoro
+        def comer
+            'Puedo comer carne!'
+        end
     end
 end
 
-persona1 = Parent.new("rafa", "perro", 80)
-persona2 = Student.new("tatu", "palu", 10)
-persona3 = Teacher.new("pareja", "algo", 31)
+class Animal
+    attr :nombre
+    def initialize(nombre)
+        @nombre = nombre
+    end
+end
 
-persona1.talk()
-persona2.talk()
-persona3.talk()
+# Animales
+class Ave < Animal
+    include Habilidades::Volador
+end
+class Mamifero < Animal
+end
+class Insecto < Animal
+end
 
-persona1.introduce()
-persona2.introduce()
-persona3.introduce()
+# Aves
+class Pinguino < Ave
+end
+class Paloma < Ave
+end
+class Pato < Ave
+end
+
+# Mamiferos
+class Perro < Mamifero
+end
+class Gato < Mamifero
+end
+class Vaca < Mamifero
+end
+
+# Insectos
+class Mosca < Insecto
+end
+class Mariposa < Insecto
+end
+class Abeja < Insecto
+end
+
+animal1 = Ave.new("pajaro loco")
+animal2 = Mamifero.new("hipopotamo")
+animal3 = Insecto.new("polilla")
+
+puts animal1.nombre
+puts animal2.nombre
+puts animal3.nombre
